@@ -2,21 +2,27 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
       xmlns="http://www.w3.org/1999/html">
 <head>
+    <link rel="stylesheet" href="https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-dark.min.css">
     <meta charset="UTF-8">
     <title>Bookshelf</title>
 </head>
 <body>
-<h1>Bookshelf Services</h1>
+<header th:fragment="header" class="sticky row">
+    <a th:href="@{/}" class="logo">Bookshelf</a>
+    <a th:href="@{/}" class="button">Home</a>
+    <a th:href="@{/authors}" class="button">Authors</a>
+    <a th:href="@{/books}" class="button">Books</a>
+    <a th:href="@{/sso/login}" class="button" sec:authorize="isAnonymous()">Login</a>
+    <a th:href="@{/logout}" class="button" sec:authorize="isAuthenticated()">Logout</a>
+    <a th:text="${#authentication.name}" class="button" sec:authorize="isAuthenticated()"></a>
+</header>
+<p>Available Services</p>
 <ul>
     <li><a th:href="@{/authors}">Authors</a></li>
     <li><a th:href="@{/books}">Books</a></li>
 </ul>
-<div sec:authorize="isAnonymous()">
-    <a th:href="@{/sso/login}">Login</a>
-</div>
-<div sec:authorize="isAuthenticated()">
-    <span th:text="${#authentication.name}"></span>
-    <a th:href="@{/logout}">(logout)</a>
-</div>
+<footer th:fragment="footer">
+    <p>&copy; 2021 Made by Wojtek</p>
+</footer>
 </body>
 </html>

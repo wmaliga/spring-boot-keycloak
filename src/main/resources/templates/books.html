@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-dark.min.css">
     <meta charset="UTF-8">
     <title>Books</title>
 </head>
 <body>
-<h1>Books</h1>
-<ul th:each="book: ${books}">
-    <li th:text="${book.title} + ' (' + ${book.year} + ')'"></li>
-</ul>
-<a th:href="@{/}">Back</a>
+<div th:insert="index :: header"></div>
+<table>
+    <caption>Books</caption>
+    <thead>
+    <tr>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Year</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book: ${books}">
+        <td th:text="${book.author.firstName} + ' ' + ${book.author.lastName}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.year}"></td>
+    </tr>
+    </tbody>
+</table>
+<div th:insert="index :: footer"></div>
 </body>
 </html>
