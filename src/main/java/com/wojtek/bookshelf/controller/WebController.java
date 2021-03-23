@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -37,5 +40,11 @@ public class WebController {
         List<Book> books = this.dataService.findAllBooks();
         model.addAttribute("books", books);
         return "books";
+    }
+
+    @GetMapping("/logout")
+    public RedirectView logout(HttpServletRequest request) throws ServletException {
+        request.logout();
+        return new RedirectView("/");
     }
 }
